@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReplaceableScore™ by PolicyPal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SCREEN 1: Landing -->
+  <div id="screen-landing" class="screen active">
+    <nav class="nav">
+      <div class="nav-logo">PolicyPal<span class="nav-logo-ai">AI</span></div>
+      <div class="nav-tagline">Human Capital Risk Solutions™</div>
+    </nav>
+    <div class="landing-hero">
+      <div class="hero-badge">POWERED BY SYNTHETIC COGNITION ENGINE v4.2</div>
+      <h1 class="hero-title">How Replaceable<br />Are You, <em>Really?</em></h1>
+      <p class="hero-sub">The world's first AI-powered Human Obsolescence Assessment™ quantifies your professional redundancy risk with terrifying precision — so you can get ahead of the inevitable.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">4.7M</span>
+          <span class="stat-label">Risk Profiles Analyzed</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">94%</span>
+          <span class="stat-label">Prediction Accuracy*</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Algorithms Deployed</span>
+        </div>
+      </div>
+      <button class="btn-primary btn-xl" onclick="startQuiz()">Assess My Replaceability</button>
+      <p class="hero-disclaimer">*Accuracy metric is proprietary and cannot be independently verified. Results are non-binding and intended for satirical purposes only.</p>
+    </div>
+    <div class="landing-logos">
+      <span>As seen in</span>
+      <span class="logo-fake">ForbesTech</span>
+      <span class="logo-fake">FastWired</span>
+      <span class="logo-fake">HarvardBusiness AI Digest</span>
+      <span class="logo-fake">The Future of Work Quarterly</span>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: Quiz -->
+  <div id="screen-quiz" class="screen">
+    <nav class="nav nav-light">
+      <div class="nav-logo">PolicyPal<span class="nav-logo-ai">AI</span></div>
+      <div class="quiz-progress-label">Question <span id="q-current">1</span> of 7</div>
+    </nav>
+    <div class="quiz-wrap">
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-category" id="q-category">EMPLOYMENT PROFILE</div>
+        <h2 class="quiz-question" id="q-text"></h2>
+        <div class="quiz-options" id="q-options"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: Between-question spinner -->
+  <div id="screen-between" class="screen screen-dark">
+    <div class="between-wrap">
+      <div class="spinner-ring"></div>
+      <p class="between-label">ANALYZING PARAMETER CLUSTER</p>
+      <p class="between-sub" id="between-sub">Processing response vector…</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: Final analysis loading -->
+  <div id="screen-analysis" class="screen screen-dark">
+    <div class="analysis-wrap">
+      <div class="analysis-header">
+        <div class="spinner-ring spinner-lg"></div>
+        <h2 class="analysis-title">Running Obsolescence Analysis</h2>
+      </div>
+      <div class="analysis-steps" id="analysis-steps"></div>
+      <div class="analysis-bar-track">
+        <div class="analysis-bar-fill" id="analysis-bar"></div>
+      </div>
+      <p class="analysis-pct" id="analysis-pct">0%</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: Score reveal -->
+  <div id="screen-score" class="screen">
+    <nav class="nav nav-light">
+      <div class="nav-logo">PolicyPal<span class="nav-logo-ai">AI</span></div>
+      <div class="nav-tag">Assessment Complete</div>
+    </nav>
+    <div class="score-wrap">
+      <p class="score-eyebrow">YOUR HUMAN OBSOLESCENCE SCORE™</p>
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle class="gauge-track" cx="100" cy="100" r="80" />
+          <circle class="gauge-fill" id="gauge-fill" cx="100" cy="100" r="80" />
+        </svg>
+        <div class="gauge-center">
+          <span class="gauge-number" id="gauge-number">0</span>
+          <span class="gauge-outof">/100</span>
+        </div>
+      </div>
+      <div class="tier-badge" id="tier-badge"></div>
+      <p class="tier-desc" id="tier-desc"></p>
+      <div class="risk-factors">
+        <h3 class="risk-title">Identified Risk Factors</h3>
+        <ul class="risk-list" id="risk-list"></ul>
+      </div>
+      <button class="btn-primary" id="score-cta" onclick="showPlans()">View Recommended Insurance Plans</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 6: Plan selection -->
+  <div id="screen-plans" class="screen">
+    <nav class="nav nav-light">
+      <div class="nav-logo">PolicyPal<span class="nav-logo-ai">AI</span></div>
+      <div class="nav-tag">Coverage Options</div>
+    </nav>
+    <div class="plans-wrap">
+      <p class="plans-eyebrow">AI-MATCHED COVERAGE</p>
+      <h2 class="plans-title">Your Recommended Protection Plan</h2>
+      <p class="plans-sub">Based on your obsolescence profile, our algorithm has selected the optimal coverage tier. You may downgrade at your own risk.</p>
+      <div class="plans-grid" id="plans-grid"></div>
+    </div>
+    <div class="sticky-bar" id="sticky-bar">
+      <div class="sticky-info">
+        <span class="sticky-plan-name" id="sticky-plan-name">Basic</span>
+        <span class="sticky-price" id="sticky-price">$47/mo</span>
+      </div>
+      <button class="btn-enroll" id="enroll-btn" onclick="runEnrollment()">Enroll in Plan</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 7: Enrollment confirmation -->
+  <div id="screen-confirm" class="screen screen-dark">
+    <div class="confirm-wrap" id="confirm-wrap">
+      <div id="confirm-processing">
+        <div class="spinner-ring spinner-lg"></div>
+        <p class="between-label">TRANSMITTING RISK PROFILE</p>
+        <div class="confirm-steps" id="confirm-steps"></div>
+      </div>
+      <div id="confirm-success" style="display:none">
+        <div class="confirm-check">✓</div>
+        <h2 class="confirm-title">Coverage Confirmed</h2>
+        <p class="confirm-policy-label">POLICY NUMBER</p>
+        <p class="confirm-policy-num" id="confirm-policy-num"></p>
+        <div class="confirm-summary" id="confirm-summary"></div>
+        <p class="confirm-fine-print">PolicyPal AI is not a real insurance company. No actual coverage has been issued. This is satire. Please do not call us.</p>
+        <button class="btn-secondary" onclick="resetApp()">Return to Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
